@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MACIZO APP</title>
+
+    <style>
+      /* Imagen de fondo */
+      body {
+        background: url("assets/pearl.jpg") no-repeat center center fixed;
+        background-size: cover;
+        height: 600px;
+      }
+
+      /* Header verde claro */
+      /*  header {
+        width: 100%;
+        background-color: #90ee90;
+        padding: 20px 0;
+        text-align: center;
+        color: white;
+      }
+*/
+      /* Contenido con fondo blanco y ligera transparencia */
+      .content {
+        background-color: rgba(
+          255,
+          255,
+          255,
+          0.9
+        ); /* Blanco con transparencia */
+        padding: 40px;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        max-width: 700px;
+        margin: 100px auto;
+        text-align: center;
+      }
+
+      /* Estilo para el título dentro del header */
+      /* header h1 {
+        font-size: 4rem;
+        font-weight: bold;
+        margin: 0;
+      }*/
+
+      /* Descripción */
+      .description {
+        font-size: 1.25rem;
+        margin-top: 20px;
+        margin-bottom: 30px;
+      }
+
+      /* Botón verde fuerte */
+      .btn-comenzar {
+        background-color: #28a745;
+        color: white;
+        font-size: 1.5rem;
+        padding: 10px 30px;
+        border-radius: 5px;
+        border: none;
+      }
+
+      /* Botón al hacer hover */
+      .btn-comenzar:hover {
+        background-color: #218838;
+        color: white;
+      }
+
+      /* Para pantallas pequeñas */
+      @media (max-width: 768px) {
+        header h1 {
+          font-size: 3rem;
+        }
+
+        .description {
+          font-size: 1rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Header con el título -->
+
+    <!--  <header>
+      <h1>MACIZO APP</h1>
+    </header>
+  -->
+    <app-header-macizo></app-header-macizo>
+    <!-- <button routerLink="/recetas" class="btn btn-comenzar">test</button>
+  -->
+    <!-- Contenido con fondo blanco yng ligera transparencia -->
+    <div class="content">
+      <p class="description">
+        Bienvenidos a MACIZO-APP, la aplicación diseñada para ayudarte a llevar
+        una nutrición saludable y optimizada según los alimentos que tienes a
+        mano. Con MACIZO-APP puedes planificar tus comidas de manera
+        inteligente, reducir el desperdicio de alimentos y recibir
+        recomendaciones de recetas saludables.
+      </p>
+
+      <!-- Botón "COMENZAR" -->
+      <button routerLink="/Salud" class="btn btn-comenzar">COMENZAR</button>
+      <!--<button routerLink="/Salud" class="btn btn-comenzar">SALUD</button>-->
+    </div>
+  </body>
+</html>

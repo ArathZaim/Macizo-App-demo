@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CUAL ES TU OBJETIVO</title>
+
+    <style>
+      body {
+        background-color: #f4f4f4;
+        font-family: Arial, sans-serif;
+      }
+
+      h1 {
+        text-align: center;
+        font-size: 3rem;
+        margin-bottom: 50px;
+      }
+
+      .option-card {
+        background-color: white;
+        border-radius: 10px;
+        padding: 30px;
+        text-align: center;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s;
+        cursor: pointer;
+      }
+
+      .option-card:hover {
+        transform: scale(1.05);
+      }
+
+      .option-card i {
+        font-size: 4rem;
+        color: #28a745;
+      }
+
+      .option-card p {
+        font-size: 1.5rem;
+        margin-top: 15px;
+        font-weight: bold;
+        color: #333;
+      }
+
+      .container-options {
+        display: flex;
+        justify-content: center;
+        gap: 50px;
+      }
+
+      .selected {
+        border: 2px solid #28a745;
+        animation: bounce 0.3s;
+      }
+
+      @keyframes bounce {
+        0% {
+          transform: scale(1);
+        }
+        50% {
+          transform: scale(1.1);
+        }
+        100% {
+          transform: scale(1);
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <app-header-macizo></app-header-macizo>
+    <h1>CUAL ES TU OBJETIVO</h1>
+
+    <div class="container container-options">
+      <div
+        class="col-md-4 option-card"
+        [ngClass]="{ selected: selectedOption === 'GANAR MÚSCULO' }"
+        (click)="selectOption('GANAR MÚSCULO')"
+      >
+        <i class="fas fa-dumbbell"></i>
+        <p>GANAR MÚSCULO</p>
+      </div>
+
+      <div
+        class="col-md-4 option-card"
+        (click)="selectOption('PERDER PESO')"
+        [ngClass]="{ selected: selectedOption === 'PERDER PESO' }"
+      >
+        <i class="fas fa-carrot"></i>
+        <p>PERDER PESO</p>
+      </div>
+    </div>
+
+    <button (click)="almacenU()" class="btn btn-success" [disabled]="!selectedOption">
+      Continuar
+    </button>
+  </body>
+</html>

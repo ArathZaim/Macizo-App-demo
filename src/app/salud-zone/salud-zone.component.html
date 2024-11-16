@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Formulario Salud</title>
+  </head>
+  <body>
+    <app-header-macizo></app-header-macizo>
+    @if(form){
+
+    <div class="container mt-5">
+      <h2 class="text-center mb-4">Formulario de Salud</h2>
+      <form [formGroup]="form" (ngSubmit)="nuevaSalud()">
+        <div>
+          <input
+            type="number"
+            hidden="true"
+            class="form-control"
+            id="id_usuario_frg"
+            formControlName="id_usuario_frg"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label for="peso">Peso (kg)</label>
+          <input
+            type="number"
+            step="0.01"
+            class="form-control"
+            id="peso"
+            formControlName="peso"
+            placeholder="Ingrese su peso en kilogramos"
+            required
+          />
+        </div>
+
+        <div class="mb-3">
+          <label for="altura">Altura (m)</label>
+          <input
+            type="number"
+            step="0.01"
+            class="form-control"
+            id="altura"
+            formControlName="altura"
+            placeholder="Ingrese su altura en metros"
+            required
+          />
+        </div>
+
+        <div class="mb-3">
+          <label for="imc">IMC</label>
+          <input
+            type="number"
+            step="0.01"
+            class="form-control"
+            id="imc"
+            formControlName="imc"
+            placeholder="Ingrese su Índice de Masa Corporal"
+            required
+          />
+        </div>
+        <label for="sexo" class="form-label">Sexo</label><br />
+
+        <label for="sexo">Hombre</label>
+        <input
+          type="radio"
+          formControlName="genero"
+          [value]="'Hombre'"
+          (change)="Gatauba('Hombre')"
+        />
+
+        <label for="sexo">Mujer</label>
+        <input
+          type="radio"
+          formControlName="genero"
+          [value]="'Mujer'"
+          (change)="Gatauba('Mujer')"
+        />
+
+        <label for="sexo">Otro</label>
+        <input
+          type="radio"
+          formControlName="genero"
+          [value]="'Otro'"
+          (change)="Gatauba('Otro')"
+        />
+        <button type="submit" class="btn btn-primary btn-block">
+          Continuar
+        </button>
+      </form>
+    </div>
+    }
+  </body>
+</html>

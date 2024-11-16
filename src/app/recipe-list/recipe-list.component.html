@@ -1,0 +1,21 @@
+<app-header-macizo></app-header-macizo>
+<div class="container">
+  <h2>Recetas</h2>
+  <div class="row">
+    <div *ngFor="let recipe of recetaInicial" class="col-md-4">
+      <div class="card mb-3">
+        <img
+          [src]="recipe.image"
+          class="card-img-top"
+          alt="{{ recipe.title }}"
+        />
+        <div class="card-body">
+          <h5 class="card-title">{{ recipe.title }}</h5>
+          <a [href]="recipe.sourceUrl" class="btn btn-primary" target="_blank"
+            >Ver Receta</a
+          >
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

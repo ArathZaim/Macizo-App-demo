@@ -29,42 +29,7 @@
 
     <div class="login-container">
       <h3 class="text-center mb-24">Nuevo Usuario</h3>
-      <form [formGroup]="form" (submit)="nuevo()">
-        <div class="form-group">
-          <label for="nombre">Nombre de Usuario</label>
-          <input
-            type="text"
-            class="form-control"
-            id="nombre"
-            placeholder="Ingresa un Nombre de usuario"
-            required
-            formControlName="nombre"
-          />
-          @if(form.get('nombre')?.hasError('required') &&
-          form.get('nombre')?.touched){
-          <p class="invalid-feedback d-block">
-            El campo de nombre no puede estar vacío
-          </p>
-          }
-        </div>
-        <div class="form-group">
-          <label for="edad">edad</label>
-          <input
-            type="number"
-            class="form-control"
-            id="edad"
-            placeholder="Ingresa tu edad"
-            required
-            formControlName="edad"
-          />
-          @if(form.get('edad')?.hasError('required') &&
-          form.get('edad')?.touched){
-          <p class="invalid-feedback d-block">
-            El campo de edad no puede estar vacío
-          </p>
-          }
-        </div>
-
+      <form [formGroup]="form">
         <div>
           <label for="email">Email</label>
           <input
@@ -102,8 +67,13 @@
         </div>
         <br />
 
-    <button type="submit"  class="btn btn-primary btn-block">
-          Crear Cuenta
+        <button type="submit" class="btn btn-primary btn-block">
+          Iniciar Sesión
+        </button>
+        <br />
+        <br />
+        <button routerLink="/Login" class="btn btn-primary btn-block">
+         Eres nuevo?, crea una cuenta
         </button>
       </form>
     </div>

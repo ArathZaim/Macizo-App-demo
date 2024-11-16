@@ -24,9 +24,15 @@ export const routes: Routes = [
   },
 
   {
-
-    path:'testeo',
-    loadComponent:()=>import('./testeo-zn/testeo-zn.component'),
-
+    path: 'testeo',
+    loadComponent: () => import('./testeo-zn/testeo-zn.component'),
+  },
+  {
+    path: 'ScrnU',
+    loadComponent: () => import('./scrn-usuario/scrn-usuario.component'),
+  },
+  {
+    path: 'Sign',
+    loadComponent: () => import('./sign-in/sign-in.component'),
   },
 ];

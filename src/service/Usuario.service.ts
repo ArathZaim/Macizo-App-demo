@@ -25,4 +25,10 @@ export class UsuarioService {
     this.usuario = usuario;
     console.log(this.usuario);
   }
+
+  obtenerUsuario(id: number) {
+    return this.http.get<Usuario>(
+      `http://localhost:8080/macizoapp/usuarios/${id}`
+    );
+  }
 }

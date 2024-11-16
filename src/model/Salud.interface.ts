@@ -1,3 +1,4 @@
+
 export interface Salud {
   id_salud: number;
   id_usuario_frg: number;

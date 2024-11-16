@@ -12,16 +12,6 @@
     <div class="container mt-5">
       <h2 class="text-center mb-4">Formulario de Salud</h2>
       <form [formGroup]="form" (ngSubmit)="nuevaSalud()">
-        <div>
-          <input
-            type="number"
-            hidden="true"
-            class="form-control"
-            id="id_usuario_frg"
-            formControlName="id_usuario_frg"
-          />
-        </div>
-
         <div class="mb-3">
           <label for="peso">Peso (kg)</label>
           <input
@@ -60,27 +50,30 @@
             required
           />
         </div>
-        <label for="sexo" class="form-label">Sexo</label><br />
+        <label>Sexo</label><br />
 
-        <label for="sexo">Hombre</label>
+        <label>Hombre</label>
         <input
+          id="Hombre"
           type="radio"
           formControlName="genero"
           [value]="'Hombre'"
           (change)="Gatauba('Hombre')"
         />
 
-        <label for="sexo">Mujer</label>
+        <label>Mujer</label>
         <input
+          id="Mujer"
           type="radio"
           formControlName="genero"
           [value]="'Mujer'"
           (change)="Gatauba('Mujer')"
         />
 
-        <label for="sexo">Otro</label>
+        <label>Otro</label>
         <input
           type="radio"
+          id="Otro"
           formControlName="genero"
           [value]="'Otro'"
           (change)="Gatauba('Otro')"

@@ -33,21 +33,26 @@ export default class ObjetivoScrnComponent {
       this.errors.push('Por favor, selecciona un objetivo.');
       return;
     }
-    this.usuarioN = this.usuarioService.usuario;
+
+    if (!this.usuarioService.usuario) {
+      console.error('El usuario no está inicializado.');
+      this.errors.push('No se pudo procesar la solicitud. Intenta de nuevo más tarde.');
+      return;
+    }
+
+    // Crear una copia del usuario para evitar modificar directamente el servicio
+    this.usuarioN = { ...this.usuarioService.usuario };
     this.usuarioN.objetivo = this.selectedOption;
 
-    this.usuarioService.nuevo(this.usuarioN);
-    let request: Observable<Usuario>;
-    request = this.usuarioService.nuevo(this.usuarioN);
-    request.subscribe({
+    this.usuarioService.nuevo(this.usuarioN).subscribe({
       next: () => {
         this.errors = [];
-
-        this.router.navigate(['/Salud']);
+        this.router.navigate(['/recetas']);
       },
       error: (response) => {
-        this.errors = response.error.errors;
+        this.errors = response.error?.errors || ['Ocurrió un error inesperado.'];
+        console.error('Detalles del error:', response);
       },
     });
   }
-}
+  }

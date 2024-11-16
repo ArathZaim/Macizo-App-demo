@@ -11,6 +11,7 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
+import { Usuario } from '../../model/Usuario.interface';
 
 @Component({
   selector: 'app-salud-zone',
@@ -23,7 +24,7 @@ import {
     ReactiveFormsModule,
   ],
   templateUrl: './salud-zone.component.html',
-  styleUrl: './salud-zone.component.css',
+  styleUrls: ['./salud-zone.component.css'],
 })
 export default class SaludZoneComponent implements OnInit {
   private fb = inject(FormBuilder);
@@ -31,17 +32,38 @@ export default class SaludZoneComponent implements OnInit {
   private routerActivade = inject(ActivatedRoute);
   generoo: String = '';
   form?: FormGroup;
-  Salud?: Salud;
+  salud?: Salud;
   errors: String[] = [];
-
+  usuarioEE: any;
+  id_usuario_frg!: number;
   private saludService = inject(SaludService);
+
   ngOnInit(): void {
+    /* this.routerActivade.queryParams.subscribe((params) => {
+      const id_usuario = params['id'];
+      if (id_usuario) {
+        this.id_usuario_frg = id_usuario; // Asignar al campo correspondiente
+      } else {
+        console.error('ID de usuario no encontrado');
+        this.router.navigate(['/usuario']); // Redirige en caso de error
+      }
+    });
+
     this.form = this.fb.group({
-      id_usuario_frg:[1, Validators.required],
       peso: ['', [Validators.required]],
       altura: ['', [Validators.required]],
       imc: ['', [Validators.required]],
       genero: ['', Validators.required],
+    });*/
+  }
+
+  llamado() {
+    const idUsuario = 1852;
+    this.saludService.obtenerUsuario(idUsuario).subscribe({
+      next: (usuario) => {
+        this.usuarioEE = usuario;
+      },
+      error: (err) => console.error('Error al obtener usuario:', err),
     });
   }
 
@@ -56,7 +78,12 @@ export default class SaludZoneComponent implements OnInit {
       this.form.markAllAsTouched();
       return;
     }
-    const saludNueva = this.form!.value;
+    //this.salud = this.form!.value;
+    //this.salud!.id_usuario_frg = this.usuarioEE; // Incluye el objeto Usuario completo
+    const saludNueva = {
+      ...this.form!.value,
+      //id_usuario_frg: this.id_usuario_frg, // Adjunta el ID directamente
+    };
     this.saludService.nuevaSalud(saludNueva).subscribe({
       next: (response) => {
         console.log('Salud guardada con éxito:', response);

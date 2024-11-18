@@ -1,6 +1,7 @@
 import { Usuario } from './../model/Usuario.interface';
 import { HttpClient } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -28,7 +29,13 @@ export class UsuarioService {
 
   obtenerUsuario(id: number) {
     return this.http.get<Usuario>(
-      `http://localhost:8080/macizoapp/usuarios/${id}`
+      `http://localhost:8080/macizoapp/usuarios/id/${id}`
+    );
+  }
+
+  validarU(email: string,password:string): Observable<Usuario> {
+    return this.http.get<Usuario>(
+      `http://localhost:8080/macizoapp/usuarios/email/${email}/password/${password}`
     );
   }
 }

@@ -47,7 +47,7 @@ export default class ObjetivoScrnComponent {
     this.usuarioService.nuevo(this.usuarioN).subscribe({
       next: () => {
         this.errors = [];
-        this.router.navigate(['/recetas']);
+        this.router.navigate(['/']);
       },
       error: (response) => {
         this.errors = response.error?.errors || ['Ocurrió un error inesperado.'];

@@ -12,6 +12,7 @@ import {
   Validators,
 } from '@angular/forms';
 import { Usuario } from '../../model/Usuario.interface';
+import { UsuarioService } from '../../service/Usuario.service';
 
 @Component({
   selector: 'app-salud-zone',
@@ -35,8 +36,9 @@ export default class SaludZoneComponent implements OnInit {
   salud?: Salud;
   errors: String[] = [];
   usuarioEE: any;
-  id_usuario_frg!: number;
+  id_usuario_frg: number = 0;
   private saludService = inject(SaludService);
+  private usuarioService = inject(UsuarioService);
 
   ngOnInit(): void {
     /* this.routerActivade.queryParams.subscribe((params) => {
@@ -48,25 +50,32 @@ export default class SaludZoneComponent implements OnInit {
         this.router.navigate(['/usuario']); // Redirige en caso de error
       }
     });
-
+*/
     this.form = this.fb.group({
       peso: ['', [Validators.required]],
       altura: ['', [Validators.required]],
       imc: ['', [Validators.required]],
       genero: ['', Validators.required],
-    });*/
+    });
+    this.routerActivade.queryParams.subscribe(params => {
+      this.id_usuario_frg = params['id'];
+      if (this.id_usuario_frg) {
+        this.llamado();
+      }
+    });
+
   }
 
   llamado() {
-    const idUsuario = 1852;
-    this.saludService.obtenerUsuario(idUsuario).subscribe({
+   // const idUsuario = 1852;
+    //this.id_usuario_frg = this.usuarioService.usuario!.id_usuario;
+    this.saludService.getUsalud(this.id_usuario_frg).subscribe({
       next: (usuario) => {
         this.usuarioEE = usuario;
       },
       error: (err) => console.error('Error al obtener usuario:', err),
     });
   }
-
   generoSeleccionado: string = '';
 
   Gatauba(gender: string) {
@@ -80,14 +89,16 @@ export default class SaludZoneComponent implements OnInit {
     }
     //this.salud = this.form!.value;
     //this.salud!.id_usuario_frg = this.usuarioEE; // Incluye el objeto Usuario completo
+    //this.id_usuario_frg = this.usuarioService.usuario!.id_usuario;
     const saludNueva = {
       ...this.form!.value,
+      id_usuario_frg: this.usuarioEE,
       //id_usuario_frg: this.id_usuario_frg, // Adjunta el ID directamente
     };
     this.saludService.nuevaSalud(saludNueva).subscribe({
       next: (response) => {
         console.log('Salud guardada con éxito:', response);
-        this.router.navigate(['/recetas']);
+        this.router.navigate(['/ScrnU']);
       },
       error: (err) => console.error('Error al guardar:', err),
     });

@@ -2,6 +2,7 @@ import { inject, Injectable } from '@angular/core';
 import { Salud } from './../model/Salud.interface';
 import { HttpClient } from '@angular/common/http';
 import { Usuario } from '../model/Usuario.interface';
+import { Observable } from 'rxjs';
 @Injectable({
   providedIn: 'root',
 })
@@ -14,9 +15,9 @@ export class SaludService {
       salud
     );
   }
-  obtenerUsuario(id_usuario_frg: number) {
+  getUsalud(id_usuario_frg: number):Observable<Usuario> {
     return this.http.get<Usuario>(
-      `http://localhost:8080/macizoapp/usuarios/${id_usuario_frg}`
+      `http://localhost:8080/macizoapp/salud/buscarU/${id_usuario_frg}`
     );
   }
 }

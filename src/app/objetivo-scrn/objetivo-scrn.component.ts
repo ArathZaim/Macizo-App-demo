@@ -40,14 +40,14 @@ export default class ObjetivoScrnComponent {
       return;
     }
 
-    // Crear una copia del usuario para evitar modificar directamente el servicio
     this.usuarioN = { ...this.usuarioService.usuario };
     this.usuarioN.objetivo = this.selectedOption;
 
     this.usuarioService.nuevo(this.usuarioN).subscribe({
-      next: () => {
+      next: (response) => {
         this.errors = [];
-        this.router.navigate(['/']);
+        this.usuarioService.compartirUsuario(response);
+        this.router.navigate(['/Salud'], { queryParams: { id: response.id_usuario } });
       },
       error: (response) => {
         this.errors = response.error?.errors || ['Ocurrió un error inesperado.'];

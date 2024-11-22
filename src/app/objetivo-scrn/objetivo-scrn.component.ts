@@ -36,23 +36,29 @@ export default class ObjetivoScrnComponent {
 
     if (!this.usuarioService.usuario) {
       console.error('El usuario no está inicializado.');
-      this.errors.push('No se pudo procesar la solicitud. Intenta de nuevo más tarde.');
+      this.errors.push(
+        'No se pudo procesar la solicitud. Intenta de nuevo más tarde.'
+      );
       return;
     }
 
     this.usuarioN = { ...this.usuarioService.usuario };
     this.usuarioN.objetivo = this.selectedOption;
-
     this.usuarioService.nuevo(this.usuarioN).subscribe({
       next: (response) => {
         this.errors = [];
         this.usuarioService.compartirUsuario(response);
-        this.router.navigate(['/Salud'], { queryParams: { id: response.id_usuario } });
+        localStorage.setItem('id', response.id_usuario.toString());
+        this.router.navigate(['/Salud'], {
+          queryParams: { id: response.id_usuario },
+        });
       },
       error: (response) => {
-        this.errors = response.error?.errors || ['Ocurrió un error inesperado.'];
+        this.errors = response.error?.errors || [
+          'Ocurrió un error inesperado.',
+        ];
         console.error('Detalles del error:', response);
       },
     });
   }
-  }
+}

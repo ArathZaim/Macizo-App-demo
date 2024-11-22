@@ -57,17 +57,16 @@ export default class SaludZoneComponent implements OnInit {
       imc: ['', [Validators.required]],
       genero: ['', Validators.required],
     });
-    this.routerActivade.queryParams.subscribe(params => {
+    this.routerActivade.queryParams.subscribe((params) => {
       this.id_usuario_frg = params['id'];
       if (this.id_usuario_frg) {
         this.llamado();
       }
     });
-
   }
 
   llamado() {
-   // const idUsuario = 1852;
+    // const idUsuario = 1852;
     //this.id_usuario_frg = this.usuarioService.usuario!.id_usuario;
     this.saludService.getUsalud(this.id_usuario_frg).subscribe({
       next: (usuario) => {
@@ -93,12 +92,16 @@ export default class SaludZoneComponent implements OnInit {
     const saludNueva = {
       ...this.form!.value,
       id_usuario_frg: this.usuarioEE,
-      //id_usuario_frg: this.id_usuario_frg, // Adjunta el ID directamente
+      //id_usuario_frg: this.id_usuario_frg,
     };
     this.saludService.nuevaSalud(saludNueva).subscribe({
       next: (response) => {
         console.log('Salud guardada con éxito:', response);
-        this.router.navigate(['/ScrnU']);
+        //localStorage.setItem('ids', response.id_salud.toString());
+
+        this.router.navigate(['/ScrnU'], {
+          queryParams: { id: response.id_salud },
+        });
       },
       error: (err) => console.error('Error al guardar:', err),
     });

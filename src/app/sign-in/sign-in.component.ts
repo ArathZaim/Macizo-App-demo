@@ -36,8 +36,7 @@ export default class SignInComponent implements OnInit {
   ngOnInit(): void {
     this.form = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
-
-      password: ['', Validators.required],
+      password: ['', [Validators.required]],
     });
   }
 
@@ -45,18 +44,26 @@ export default class SignInComponent implements OnInit {
     const email = this.form!.get('email')!.value;
     const password = this.form!.get('password')!.value;
 
+    if (this.form?.invalid) {
+      this.form.markAllAsTouched();
+      return;
+    }
+    //const f=this.form!.value;
     this.usuarioser.validarU(email, password).subscribe({
       next: (response) => {
-        console.log('Usuario encontrado:', response);
-        this.router.navigate(['/']);
+        console.log('Usuario encontrado:', response.nombre);
+        this.usuarioser.compartirUsuario(response);
+        localStorage.setItem('id', response.id_usuario.toString());
+
+        this.router.navigate(['/ScrnU']);
       },
       error: (error) => {
         if (error.status === 401) {
-          alert('Contraseña incorrecta');
-        } else if (error.status === 404) {
-          alert('Usuario no encontrado');
+          alert('CONTRASEÑA INCORRECTA');
+        } else if (error.status == 404) {
+          alert('USUARIO NO ENCONTRADO');
         } else {
-          console.error('Error inesperado:', error);
+          alert('UPS!, OCURRIO UN ERROR INESPERADO EN EL SISTEMA MACIZO, GUARDE LA CALMA EN BREVE LO RESOLVEREMOS');
         }
       },
     });

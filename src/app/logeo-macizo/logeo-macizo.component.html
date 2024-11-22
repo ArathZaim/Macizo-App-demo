@@ -57,6 +57,12 @@
             required
             formControlName="edad"
           />
+          <div
+            *ngIf="(form.get('edad')?.errors?.['max'] || form.get('edad')?.errors?.['min'])"
+            class="text-danger"
+          >
+            La edad debe ser mayor o igual a 15
+          </div>
           @if(form.get('edad')?.hasError('required') &&
           form.get('edad')?.touched){
           <p class="invalid-feedback d-block">
@@ -76,7 +82,7 @@
             formControlName="email"
           />
           @if(form.get('email')?.hasError('required') &&
-          form.get('nombre')?.touched){
+          form.get('email')?.touched){
           <p class="invalid-feedback d-block">
             El campo de email no puede estar vacío
           </p>
@@ -93,8 +99,11 @@
             required
             formControlName="password"
           />
+          <div *ngIf="(form.get('password')?.errors?.['minlength'])" class="text-danger">
+            La contraseña debe tener al menos 8 caracteres
+          </div>
           @if(form.get('password')?.hasError('required') &&
-          form.get('nombre')?.touched){
+          form.get('password')?.touched){
           <p class="invalid-feedback d-block">
             El campo de contraseña no puede estar vacío
           </p>
@@ -102,7 +111,7 @@
         </div>
         <br />
 
-    <button type="submit"  class="btn btn-primary btn-block">
+        <button type="submit" class="btn btn-primary btn-block">
           Crear Cuenta
         </button>
       </form>

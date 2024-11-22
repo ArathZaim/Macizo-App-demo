@@ -28,8 +28,7 @@
     @if(form){
 
     <div class="login-container">
-      <h3 class="text-center mb-24">Nuevo Usuario</h3>
-      <form [formGroup]="form">
+      <form [formGroup]="form" (ngSubmit)="busqueda()">
         <div>
           <label for="email">Email</label>
           <input
@@ -41,7 +40,7 @@
             formControlName="email"
           />
           @if(form.get('email')?.hasError('required') &&
-          form.get('nombre')?.touched){
+          form.get('email')?.touched){
           <p class="invalid-feedback d-block">
             El campo de email no puede estar vacío
           </p>
@@ -59,7 +58,7 @@
             formControlName="password"
           />
           @if(form.get('password')?.hasError('required') &&
-          form.get('nombre')?.touched){
+          form.get('password')?.touched){
           <p class="invalid-feedback d-block">
             El campo de contraseña no puede estar vacío
           </p>
@@ -67,7 +66,7 @@
         </div>
         <br />
 
-        <button (click)="busqueda()" class="btn btn-primary btn-block">
+        <button type="submit" class="btn btn-primary btn-block">
           Iniciar Sesión
         </button>
         <br />
@@ -75,6 +74,11 @@
         <button routerLink="/Login" class="btn btn-primary btn-block">
          Eres nuevo?, crea una cuenta
         </button>
+        <br>
+        <br>
+        <button routerLink="/resCorreo" class="btn btn-primary btn-block">
+          Olvide mi contraseña
+         </button>
       </form>
     </div>
     }

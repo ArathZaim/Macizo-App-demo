@@ -35,4 +35,20 @@ export const routes: Routes = [
     path: 'Sign',
     loadComponent: () => import('./sign-in/sign-in.component'),
   },
+
+  {
+    path: 'zaludHoja',
+    loadComponent: () => import('./salud-hoja/salud-hoja.component'),
+  },
+  {
+    path: 'resCorreo',
+    loadComponent: () =>
+      import('./recuperar-contra/recuperar-contra.component'),
+  },
+
+  {
+    path: 'resContra',
+    loadComponent: () =>
+      import('./confirmar-contra/confirmar-contra.component'),
+  },
 ];

@@ -1,12 +1,23 @@
+<!--<p>{{ usuarioAct.id_usuario }}</p>
+<p>{{ usuarioAct.nombre }}</p>
+-->
+<link
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+  rel="stylesheet"
+/>
+
+<div class="logout-button">
+  <button class="btn btn-danger" (click)="logout()">
+    <i class="fas fa-sign-out-alt"></i> Cerrar Sesión
+  </button>
+</div>
 <div class="container mt-5">
   <div class="text-center mb-4">
-    <h1 class="display-4">Bienvenido a MACIZO-SYS</h1>
+    <h1 class="display-4">Bienvenido {{namee}}</h1>
     <p class="lead">Elige una sección para comenzar</p>
   </div>
 
-  <!-- Sección de opciones -->
   <div class="row justify-content-center">
-    <!-- Opción Inventario -->
     <div class="col-md-4 mb-3">
       <div class="card shadow-sm">
         <div class="card-body text-center">
@@ -19,25 +30,25 @@
       </div>
     </div>
 
-    <!-- Opción Salud -->
     <div class="col-md-4 mb-3">
       <div class="card shadow-sm">
         <div class="card-body text-center">
           <h5 class="card-title">Salud</h5>
           <p class="card-text">Accede a tus datos de salud y estado físico.</p>
-          <button class="btn btn-success btn-lg">
+          <button class="btn btn-success btn-lg" routerLink="/zaludHoja" >
             <i class="fas fa-heartbeat"></i> Ir a Salud
           </button>
         </div>
       </div>
     </div>
 
-    <!-- Opción Recetas -->
     <div class="col-md-4 mb-3">
       <div class="card shadow-sm">
         <div class="card-body text-center">
           <h5 class="card-title">Configuración</h5>
-          <p class="card-text">Configura tu perfil (correo, contraseña, etc).</p>
+          <p class="card-text">
+            Configura tu perfil (correo, contraseña, etc).
+          </p>
           <button class="btn btn-warning btn-lg">
             <i class="fas fa-utensils"></i> Ir a la Configuración
           </button>
@@ -46,9 +57,8 @@
     </div>
   </div>
 
-  <!-- Botón para sección adicional con icono de sartén -->
   <div class="text-center mt-5">
-    <button class="btn btn-dark btn-lg">
+    <button class="btn btn-dark btn-lg" routerLink="/recetas">
       <i class="fas fa-frying-pan"></i> ¡Dame una receta!
     </button>
   </div>
